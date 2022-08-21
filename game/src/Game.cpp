@@ -42,7 +42,22 @@ void Game::shuffleDeck()
 
 void Game::getStdoutHits()
 {
-    // TO DO
+    std::string resp;
+
+    for (size_t i = 0; i < this->_players.size(); i++) {
+        resp = "";
+        while (resp != "n" && this->_players[i]->getScore() < 21) {
+            std::cout << "Player " << this->_players[i]->getId() << ", would you like to hit? Current score: " << this->_players[i]->getScore() << " (y/n)" << std::endl;
+            std::cin >> resp;
+            if (resp == "y") {
+                this->_players[i]->draw(this->_deck->drawTopCard());
+            } else if (resp != "n") {
+                std::cout << "Invalid input, please just put \"y\" for yes or \"n\" for no." << std::endl;
+            }
+        }
+        if (this->_players[i]->getScore() > 21)
+            std::cout << "Player " << this->_players[i]->getId() << " busts!" << std::endl;
+    }
 }
 
 int Game::revealResults()
@@ -61,7 +76,17 @@ int Game::revealResults()
     if (getDealerScore() > 21) {
         if (PLAYERS_AND_CARDS_TO_SDTOUT)
             std::cout << "Dealer busts!" << std::endl;
-        return (0);
+    }
+    for (size_t i = 0; i < this->_players.size(); i++) {
+        std::cout << "******************************" << std::endl;
+        std::cout << "Results for Player " << this->_players[i]->getId() << std::endl;
+        if (this->_players[i]->getScore() > 21 || (this->_players[i]->getScore() < this->getDealerScore() && this->getDealerScore() < 22)) {
+            std::cout << "LOSS" << std::endl;
+        } else if (this->_players[i]->getScore() == this->getDealerScore()) {
+            std::cout << "TIE" << std::endl;
+        } else {
+            std::cout << "WIN" << std::endl;
+        }
     }
     return (1);
 }

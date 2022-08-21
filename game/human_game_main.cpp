@@ -8,5 +8,6 @@ int main(int ac, char **av)
 
     game.shuffleDeck();
     game.deal();
+    game.getStdoutHits();
     game.revealResults();
 }
