@@ -49,3 +49,13 @@ size_t Player::getId()
 {
     return (this->_id);
 }
+
+size_t Player::handSize()
+{
+    return (this->_hand.size());
+}
+
+std::vector<std::shared_ptr<Card>> Player::getHand()
+{
+    return (this->_hand);
+}

@@ -18,6 +18,8 @@
             void returnHand();
             size_t getScore();
             size_t getId();
+            size_t handSize();
+            std::vector<std::shared_ptr<Card>> getHand();
         private:
             std::vector<std::shared_ptr<Card>> _hand;
             size_t _id;

@@ -6,6 +6,7 @@ cc	=	g++
 SRC		=	Card.cpp	\
 			Deck.cpp	\
 			Player.cpp	\
+			GameInfo.cpp	\
 			Game.cpp
 
 TESTS_SRC	=
